@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   githubAccessToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 }
+
 const GitHubState = props => {
   const initialState = {
     users: [],
