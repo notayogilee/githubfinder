@@ -12,7 +12,7 @@ import {
 
 let githubAccessToken;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   githubAccessToken = process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
 } else {
   githubAccessToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
