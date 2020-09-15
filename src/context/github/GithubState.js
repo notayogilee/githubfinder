@@ -10,12 +10,17 @@ import {
   GET_REPOS
 } from '../types';
 
-let githubAccessToken;
+let githubClientId;
+let githubClientSecret;
 
 if (process.env.NODE_ENV !== 'production') {
-  githubAccessToken = process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
+  // githubAccessToken = process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
+  githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+  githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else {
-  githubAccessToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+  // githubAccessToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+  githubClientId = process.env.GITHUB_CLIENT_ID;
+  githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
 }
 
 const GitHubState = props => {
@@ -32,7 +37,7 @@ const GitHubState = props => {
   const searchUsers = async text => {
     setLoading();
 
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}&access_token=${githubAccessToken}`);
+    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`);
 
     dispatch({
       type: SEARCH_USERS,
@@ -44,7 +49,7 @@ const GitHubState = props => {
   const getUser = async (username) => {
     setLoading();
 
-    const res = await axios.get(`https://api.github.com/users/${username}?access_token=${githubAccessToken}`);
+    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${githubClientId}&client_secret=${githubClientSecret}`);
 
     dispatch({
       type: GET_USER,
@@ -58,7 +63,7 @@ const GitHubState = props => {
   const getUserRepos = async (username) => {
     setLoading();
 
-    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&access_token=${githubAccessToken}`);
+    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&client_secret=${githubClientSecret}`);
 
     dispatch({
       type: GET_REPOS,
