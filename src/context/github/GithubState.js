@@ -14,11 +14,9 @@ let githubClientId;
 let githubClientSecret;
 
 if (process.env.NODE_ENV !== 'production') {
-  // githubAccessToken = process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN;
   githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
   githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 } else {
-  // githubAccessToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
   githubClientId = process.env.GITHUB_CLIENT_ID;
   githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
 }
